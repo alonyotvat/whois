@@ -24,6 +24,9 @@ class DateRegex:
 
         try:
             year = match.group('year')
+            if year < 1970:
+                return None
+
             month = match.group('month')
             day = match.group('day')
         except Exception:
