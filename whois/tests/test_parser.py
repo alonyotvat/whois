@@ -424,3 +424,21 @@ class ParserTestCase(
                 block_raised = True
 
         self.assertTrue(block_raised)
+
+    def test_invalid_date(
+        self,
+    ):
+        for domain in (
+                'j24.com.br',
+        ):
+            whois_querier = querier.Querier()
+            parsed = whois_querier.query(
+                domain=domain,
+            )
+
+            self.assertGreaterEqual(
+                a=parsed['creation_date'].year,
+                b=1970,
+            )
+
+            time.sleep(0.5)
